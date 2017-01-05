@@ -6,3 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
+
+.ttt-grid {
+	width: 75%;
+	margin: 0 auto;
+	background-color: green;
+}
+
+.row {
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.box {
+	width: 30%;
+	padding-top: 30%;
+	background-color: red;
+}
