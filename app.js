@@ -1,3 +1,11 @@
+global.rootRequire = function(name) {
+  return require(__dirname + '/' + name);
+};
+
+global.prettyLog = function(obj) {
+  console.log(JSON.stringify(obj, null, 2));
+}
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,6 +17,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,4 +67,4 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app;
+module.exports = {app: app, server: server, io: io};
