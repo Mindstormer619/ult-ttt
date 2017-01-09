@@ -46,9 +46,11 @@ a {
 }
 
 .box {
-	/*background-color: red;*/
 	flex-grow: 1;
 	border-style: solid;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .gray {
@@ -57,4 +59,9 @@ a {
 
 .white {
 	background-color: white;
+}
+
+.cell {
+	border: 1px solid black;
+	flex-grow: 1;
 }
