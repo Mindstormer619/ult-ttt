@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('flex-grid-test', { title: 'Express' });
+  res.render('index', { title: 'Express' });
 });
+
+router.post('/newgame', function(req, res, next) {
+
+})
 
 module.exports = router;
