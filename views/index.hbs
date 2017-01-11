@@ -1,2 +1,16 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{#> layout}}
+	{{#*inline "content-block"}}
+	<h1>{{title}}</h1>
+	<p>Welcome to {{title}}</p>
+
+	<div>
+		<button id="new-game-button">Create a new game!</button>
+	</div>
+	{{/inline}}
+
+	{{#*inline "page-scripts-block"}}
+	<script type="text/javascript">
+		alert("Yee");
+	</script>
+	{{/inline}}
+{{/layout}}

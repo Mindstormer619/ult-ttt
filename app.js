@@ -20,6 +20,9 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
+var hbs = require('hbs');
+hbs.registerPartials(__dirname + '/views');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
