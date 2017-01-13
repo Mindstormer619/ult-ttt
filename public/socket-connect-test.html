@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Auth Socket Test</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+
+	<script type="text/javascript">
+		var socket = null;
+
+		function connectToGame() {
+			if (socket !== null) {
+				socket.disconnect();
+				socket = null;
+			}
+
+			socket = io('http://localhost:3000/game');
+			socket.on('connect', function() {
+				socket.emit('authentication', localStorage.getItem('token'));
+			});
+			socket.on('authentication-response', function(message) {
+				$("#messages-box").html(message);
+			});
+			socket.on('disconnect', function() {
+				$("#messages-box").html("Server disconnected meee :(");
+			})
+		}
+
+		function startGame() {
+			$.post('/newgame')
+			.done(function(data) {
+				localStorage.setItem("token", data.token);
+				//connectToGame();
+			})
+			.fail(function(err) {
+				console.log(err);
+			});
+		}
+
+		function runOnLoad() {
+			$('#new-game-button').click(startGame);
+			$('#connect-game-button').click(connectToGame);
+		}
+
+		$(runOnLoad);
+	</script>
+
+</head>
+<body>
+	<div id="new-game-form">
+	<button id='new-game-button'>New game!</button><br>
+	<button id='connect-game-button'>Connect to game!</button>
+	</div>
+	<div id="messages-box">
+	</div>
+</body>
+</html>

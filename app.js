@@ -13,12 +13,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+
+require('./services/socketio').setupSocketIo(io);
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
 
 var hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views');
@@ -70,4 +72,4 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = {app: app, server: server, io: io};
+module.exports = {app: app, server: server};
