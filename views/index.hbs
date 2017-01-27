@@ -1,16 +1,16 @@
-{{#> layout}}
-	{{#*inline "content-block"}}
-	<h1>{{title}}</h1>
-	<p>Welcome to {{title}}</p>
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
 
-	<div>
-		<button id="new-game-button">Create a new game!</button>
-	</div>
-	{{/inline}}
+<div>
+	<button id="new-game-button" onclick="startNewGame()">Create a new game!</button>
+</div>
 
-	{{#*inline "page-scripts-block"}}
-	<script type="text/javascript">
-		alert("Yee");
-	</script>
-	{{/inline}}
-{{/layout}}
+<script type="text/javascript">
+    function startNewGame() {
+        $.post('/newgame')
+        .done(function(res) {
+            console.log(res);
+            window.location.href = '/game/' + res.gameUrl;
+        });
+    }
+</script>
